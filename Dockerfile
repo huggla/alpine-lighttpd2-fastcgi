@@ -1,7 +1,5 @@
 FROM alpine:latest
 
-ENV PRECMD=cd
-
 RUN apk --no-cache add glib libev ragel lua zlib libbz2 libssl1.0 \
  && apk --no-cache add --virtual build-dependencies gcc g++ glib-dev make libtool automake autoconf libev-dev lua-dev zlib-dev openssl-dev \
  && wget http://git.lighttpd.net/lighttpd/lighttpd2.git/snapshot/lighttpd2-master.tar.gz \
@@ -14,8 +12,7 @@ RUN apk --no-cache add glib libev ragel lua zlib libbz2 libssl1.0 \
  && cd .. && rm -rf lighttpd2-master* \
  && apk del build-dependencies \
  && adduser -D www-data \
- && mkdir -p /run/fastcgi \
- && $PRECMD
+ && mkdir -p /run/fastcgi
 
 COPY ./conf /etc/lighttpd2
 
@@ -27,8 +24,8 @@ WORKDIR /var/www
 
 EXPOSE 80
 
-
+ENV PRECMD=cd
 
 ENTRYPOINT ["/bin/sh", "-c"]
 
-CMD ["lighttpd2 -c /etc/lighttpd2/angel.conf"] 
+CMD ["`$PRECMD` && lighttpd2 -c /etc/lighttpd2/angel.conf"] 
