@@ -24,8 +24,4 @@ WORKDIR /var/www
 
 EXPOSE 80
 
-ENV PRECMD=cd
-
-ENTRYPOINT ["/bin/sh", "-c"]
-
-CMD ["`$PRECMD` && lighttpd2 -c /etc/lighttpd2/angel.conf"] 
+CMD ["lighttpd2", "-c", "/etc/lighttpd2/angel.conf"] 
