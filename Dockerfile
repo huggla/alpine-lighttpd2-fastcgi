@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-ENV PORT=80
+ENV PORT 80
 
 RUN apk --no-cache add glib libev ragel lua zlib libbz2 openssl \
  && apk --no-cache add --virtual build-dependencies gcc g++ glib-dev make libtool automake autoconf libev-dev lua-dev zlib-dev openssl-dev \
@@ -24,6 +24,6 @@ VOLUME ["/var/www"]
 
 WORKDIR /var/www
 
-EXPOSE $PORT
+EXPOSE ${PORT}
 
 CMD ["lighttpd2", "-c", "/etc/lighttpd2/angel.conf"] 
