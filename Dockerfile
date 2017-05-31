@@ -1,7 +1,5 @@
 FROM alpine:latest
 
-ENV PORT 80
-
 RUN apk --no-cache add glib libev ragel lua zlib libbz2 openssl \
  && apk --no-cache add --virtual build-dependencies gcc g++ glib-dev make libtool automake autoconf libev-dev lua-dev zlib-dev openssl-dev \
  && wget https://git.lighttpd.net/lighttpd/lighttpd2.git/snapshot/lighttpd2-master.tar.gz \
@@ -24,6 +22,6 @@ VOLUME ["/var/www"]
 
 WORKDIR /var/www
 
-EXPOSE ${PORT}
+EXPOSE 80 81
 
 CMD ["lighttpd2", "-c", "/etc/lighttpd2/angel.conf"] 
