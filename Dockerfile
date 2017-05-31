@@ -21,7 +21,7 @@ VOLUME ["/etc/lighttpd2"]
 VOLUME ["/var/www"]
 
 WORKDIR /var/www
-
-EXPOSE 80
+ENV PORT=80
+EXPOSE $PORT
 
 CMD ["lighttpd2", "-c", "/etc/lighttpd2/angel.conf"] 
