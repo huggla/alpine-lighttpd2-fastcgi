@@ -22,6 +22,6 @@ VOLUME ["/var/www"]
 
 WORKDIR /var/www
 
-EXPOSE 80 81
+EXPOSE 80
 
 CMD ["lighttpd2", "-c", "/etc/lighttpd2/angel.conf"] 
