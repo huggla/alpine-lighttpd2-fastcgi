@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk --no-cache add glib libev ragel lua zlib libbz2 libssl1.0 \
+RUN apk --no-cache add glib libev ragel lua zlib libbz2 libssl1.0 openssl \
  && apk --no-cache add --virtual build-dependencies gcc g++ glib-dev make libtool automake autoconf libev-dev lua-dev zlib-dev openssl-dev \
  && wget https://git.lighttpd.net/lighttpd/lighttpd2.git/snapshot/lighttpd2-master.tar.gz \
  && tar xfvz lighttpd2-master.tar.gz \
