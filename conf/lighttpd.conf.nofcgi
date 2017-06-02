@@ -5,8 +5,8 @@ setup {
 		"mod_dirlist"
 	];
 
-	listen "0.0.0.0:81";
-	listen "[::]:81";
+	listen "0.0.0.0:80";
+	listen "[::]:80";
 
 	log ["debug" => "", default => "/var/log/lighttpd2/error.log"];
 	accesslog "/var/log/lighttpd2/access.log";
