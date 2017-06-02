@@ -15,12 +15,12 @@ RUN apk --no-cache add glib libev ragel lua zlib libbz2 openssl \
  && apk del build-dependencies \
  && adduser -D www-data \
  && mkdir -p /run/fastcgi \
- && mv -f /etc/lighttpd2/lighttpd.conf.test /etc/lighttpd2/lighttpd.conf
+ && mv -f /etc/lighttpd2/lighttpd.conf.nofcgi /etc/lighttpd2/lighttpd.conf
 
 VOLUME ["/var/www"]
 
 WORKDIR /var/www
 
-EXPOSE 81
+EXPOSE 80
 
 CMD ["lighttpd2", "-c", "/etc/lighttpd2/angel.conf"] 
