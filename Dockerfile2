@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+COPY ./conf /etc/lighttpd2
+
 RUN apk --no-cache add glib libev ragel lua zlib libbz2 openssl \
  && apk --no-cache add --virtual build-dependencies gcc g++ glib-dev make libtool automake autoconf libev-dev lua-dev zlib-dev openssl-dev \
  && wget https://git.lighttpd.net/lighttpd/lighttpd2.git/snapshot/lighttpd2-master.tar.gz \
@@ -12,12 +14,9 @@ RUN apk --no-cache add glib libev ragel lua zlib libbz2 openssl \
  && cd .. && rm -rf lighttpd2-master* \
  && apk del build-dependencies \
  && adduser -D www-data \
- && mkdir -p /run/fastcgi
+ && mkdir -p /run/fastcgi \
+ && mv -f /etc/lighttpd2/lighttpd.conf.test /etc/lighttpd2/lighttpd.conf
 
-COPY ./conf /etc/lighttpd2
-
-VOLUME ["/run/fastcgi"]
-VOLUME ["/etc/lighttpd2"]
 VOLUME ["/var/www"]
 
 WORKDIR /var/www
