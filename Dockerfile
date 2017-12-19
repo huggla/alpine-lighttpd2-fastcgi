@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.7
 
 RUN apk --no-cache add glib libev ragel lua zlib libbz2 openssl \
  && apk --no-cache add --virtual build-dependencies gcc g++ glib-dev make libtool automake autoconf libev-dev lua-dev zlib-dev openssl-dev \
@@ -16,12 +16,6 @@ RUN apk --no-cache add glib libev ragel lua zlib libbz2 openssl \
 
 COPY ./conf /etc/lighttpd2
 
-VOLUME ["/run/fastcgi"]
-VOLUME ["/etc/lighttpd2"]
-VOLUME ["/var/www"]
-
 WORKDIR /var/www
-
-EXPOSE 80
 
 CMD ["lighttpd2", "-c", "/etc/lighttpd2/angel.conf"] 
